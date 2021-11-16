@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+
+{% load static %}
+
+<link href="{% static 'restaurants/footer.css' %}" rel="stylesheet">
+
+<html>
+
+  <meta charset="UTF-8">
+  
+  <title>Restaurant Solver</title>
+
+  <header>
+    <div class="main-header">
+
+      <div class="header-container">
+        <h2 class="header-title"> The Restaurant Solver </h2>
+      </div>
+      <ul class="nav">
+        <a href="{% url 'restaurants:index' %}" class="header-links nav-item"><li>Home</li></a>
+        {% if user.is_authenticated %}
+        <div class="dropdown nav-item">
+          <button class="dropbtn header-links">Restaurants</button>
+          <div class="dropdown-content">
+            <a href="{% url 'restaurants:restaurants' %}">My Restaurants</a>
+            <a href="{% url 'restaurants:new_restaurant' %}">Add a Restaurant</a>
+          </div>
+        </div>
+        <a href="{% url 'users:logout' %}" class="header-links nav-item"><li>Logout</li></a>
+        {% else %}
+        <a href="{% url 'users:login' %}" class="header-links nav-item"><li>Login</li></a>
+        <a href="{% url 'users:register' %}" class="header-links nav-item"><li>Register</li></a>
+        {% endif %}
+      </ul>
+
+    </div>
+  </header>
+
+  <body>
+    <div class="main-content">
+      {% block content %} {% endblock content %}
+    </div>
+  </body>
+  <footer>
+    <div class="main-footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col">
+
+            <h4>Social Media</h4>
+            <ul class="list-unstyled">
+              <li class="table-cell">
+                <a href="https://twitter.com/Twitter">
+                  {% load static %}
+                  <img
+                    src="{% static 'restaurants/twitterIcon.png' %}"
+                    alt="Twitter"
+                    width="80"
+                    height="80"
+                  ></img>
+                </a>
+              </li>
+              <li class="table-cell">
+                <a href="https://www.facebook.com/facebook/">
+                  <img
+                    src="{% static 'restaurants/facebookIcon.png' %}"
+                    alt="Facebook"
+                    width="80"
+                    height="80"
+                  ></img>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col">
+            <h4>Other</h4>
+            <ul class="list-unstyled">
+              <li class="footer-li">
+                <a href="{% url 'restaurants:about' %}" class="footer-links">
+                  About Us
+                </Link>
+              </li>
+              <li class="footer-li">
+                <a href="{% url 'restaurants:faq' %}" class="footer-links">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+</html>
