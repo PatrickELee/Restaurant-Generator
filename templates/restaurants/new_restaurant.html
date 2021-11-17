@@ -1,0 +1,11 @@
+{% extends "restaurants/core.html" %}
+{% block content %}
+ <p>Add a new restaurant:</p>
+ 
+<form action="{% url 'restaurants:new_restaurant' %}" method='post'>
+{% csrf_token %}
+{{ form.as_p }}
+<button name="submit">Add restaurant</button>
+</form>
+ 
+{% endblock content %}
