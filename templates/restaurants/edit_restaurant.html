@@ -1,7 +1,7 @@
 {% extends "restaurants/core.html" %}
 {% block content %}
-    <p><a href="{% url 'restaurants:restaurant' restaurant.id %}">Editing: {{ restaurant }}</a></p>
- 
+    <p><a style="text-decoration:none; color:white" href="{% url 'restaurants:restaurant' restaurant.id %}">Editing: {{ restaurant }}</a></p>
+
 <form action="{% url 'restaurants:edit_restaurant' restaurant.id %}" method='post'>
     {% csrf_token %}
     {{ form.as_p }}

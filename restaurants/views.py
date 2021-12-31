@@ -6,6 +6,8 @@ from django.http import Http404
 from .models import Restaurant
 from .forms import RestaurantForm
 
+import random
+
 def index(request):
     return render(request, 'restaurants/index.html')
 
@@ -22,8 +24,20 @@ def restaurant(request, restaurant_id):
     if restaurant.owner != request.user:
         raise Http404
     restaurantType = restaurant.restaurantType
-    context = {'restaurant' : restaurant, 'restaurantType' : restaurantType}
+    context = {'restaurant' : restaurant, 'restaurantType' : restaurantType, 'restaurantID' : restaurant_id}
     return render(request, 'restaurants/restaurant.html', context)
+
+@login_required
+def random_restaurant(request):
+    restaurantsList = Restaurant.objects.filter(owner=request.user)
+    numRestaurants = len(restaurantsList)
+    randomRestaurant = None
+    randomRestaurantID = None
+    if numRestaurants != 0:
+        randomRestaurant = random.choice(restaurantsList)
+        randomRestaurantID = randomRestaurant.id
+    context = {'randomResult' : randomRestaurant, 'randomID' : randomRestaurantID}
+    return render(request, 'restaurants/random_restaurant.html', context)
 
 @login_required
 def new_restaurant(request):

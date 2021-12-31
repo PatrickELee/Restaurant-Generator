@@ -1,0 +1,12 @@
+{% extends "restaurants/core.html" %}
+
+{% block content %}
+<p>Hey, you should go to:</p>
+
+{% if randomResult %}
+    <a style="text-decoration:none; color:inherit;" href="{% url 'restaurants:restaurant' randomID %}">{{ randomResult }}</a> 
+{% else %}
+    <li> No restaurants to pick a restaurant from</li>
+{% endif %}
+
+{% endblock content %}

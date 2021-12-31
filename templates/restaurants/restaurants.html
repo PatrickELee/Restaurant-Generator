@@ -1,12 +1,13 @@
 {% extends "restaurants/core.html" %}
 
 {% block content %}
-<p>Welcome to the homepage</p>
+<p>Here are your restaurants:</p>
 
 
 {% for restaurant in restaurants %}
     <li>
-        <a style="text-decoration:none; color:inherit;" href="{% url 'restaurants:restaurant' restaurant.id %}">{{ restaurant }}</a> </li>
+        <a style="text-decoration:none; color:inherit;" href="{% url 'restaurants:restaurant' restaurant.id %}">{{ restaurant }}</a> 
+    </li>
 {% empty %}
     <li> No restaurants </li>
 {% endfor %}
