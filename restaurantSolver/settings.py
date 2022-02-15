@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Custom Apps
+    'restaurantSolver',
     'restaurants.apps.RestaurantsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
